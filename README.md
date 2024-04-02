@@ -1,8 +1,9 @@
-# bank-of-react-starter-code
-This repository is the starter code for Assignment 3 - Bank of React.
+# Assignment 3 - Bank of React.
+Team Members: 
+Vicki Wu(vicki-wu), Jackie Yee(pasteldetective), Raitah Jinnat(raitah.jinnat83@myhunter.cuny.edu), Ashleigh Wong(AshleighWong)
 
 ### Live Link 
-[Website link](https://johnnylaicode.github.io/bank-of-react-starter-code/)
+[Website link] (https://pasteldetective.github.io/assignment-3-bank-of-react/)
 
 ----------
 ### 1. Use the following process to ***import*** the Assignment 3 starter code repository to your GitHub account as your starter codebase
