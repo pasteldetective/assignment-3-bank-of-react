@@ -1,36 +1,62 @@
-/*==================================================
-src/components/Debits.js
-
-The Debits component contains information for Debits page view.
-Note: You need to work on this file for the Assignment.
-==================================================*/
-import {Link} from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Debits = (props) => {
-  // Create the list of Debit items
-  let debitsView = () => {
-    const { debits } = props;
-    return debits.map((debit) => {  // Extract "id", "amount", "description" and "date" properties of each debits JSON array element
-      let date = debit.date.slice(0,10);
-      return <li key={debit.id}>{debit.amount} {debit.description} {date}</li>
+  const { debits, addDebit } = props;
+
+  const handleAddDebit = (event) => {
+    event.preventDefault();
+    const description = event.target.elements.description.value;
+    const amount = parseFloat(event.target.elements.amount.value);
+
+    if (description && !isNaN(amount)) {
+      const newDebit = {
+        id: Math.floor(Math.random() * 1000), // Generate a unique ID (for demonstration purposes)
+        description: description,
+        amount: amount,
+        date: new Date().toISOString() // Store current date in ISO format
+      };
+
+      // Call the addDebit function from props to update state with the new debit
+      addDebit(newDebit);
+
+      // Reset form fields after adding the debit
+      event.target.reset();
+    }
+  };
+
+  const renderDebits = () => {
+    return debits.map((debit) => {
+      // Format the date with time in ISO format
+      const formattedDateTime = new Date(debit.date).toISOString(); 
+      return (
+        <li key={debit.id}>
+          {debit.amount} {debit.description} {formattedDateTime}
+        </li>
+      );
     });
-  }
-  // Render the list of Debit items and a form to input new Debit item
+  };
+
+  const debitAmount = debits.reduce((total, debit) => total + debit.amount, 0); // calculate debit amount in total
+
   return (
     <div>
       <h1>Debits</h1>
 
-      {debitsView()}
+      <p>**Total Debit Amount: {debitAmount.toFixed(2)}**</p>
 
-      <form onSubmit={props.addDebit}>
-        <input type="text" name="description" />
-        <input type="number" name="amount" />
+      <ul>{renderDebits()}</ul>
+
+      <form onSubmit={handleAddDebit}>
+        <input type="text" name="description" placeholder="Description" />
+        <input type="number" name="amount" placeholder="Amount" />
         <button type="submit">Add Debit</button>
       </form>
-      <br/>
+
+      <br />
       <Link to="/">Return to Home</Link>
     </div>
   );
-}
+};
 
 export default Debits;
