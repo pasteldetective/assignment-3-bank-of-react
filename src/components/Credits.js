@@ -4,10 +4,12 @@ src/components/Credits.js
 The Credits component contains information for Credits page view.
 Note: You need to work on this file for the Assignment.
 ==================================================*/
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; //unused
+import { useHistory } from 'react-router-dom'; //useHistory allows for dynamic navigation of buttons without refreshing page
 
 const Credits = (props) => {
   const { credits, addCredit } = props;
+  const history = useHistory(); //initialize history
 
   const handleAddCredit = (event) => {
     event.preventDefault();
@@ -47,6 +49,11 @@ const Credits = (props) => {
     0
   ); // calculate credit amount in total
 
+  //when buttons is pressed, then returns to home
+  const returnToHome = () => {
+    history.push('/');
+  };
+
   return (
     <div>
       <div className="credit-header">
@@ -78,10 +85,7 @@ const Credits = (props) => {
       <br />
       <button
         className="credit-return"
-        onClick={() => {
-          window.location.href = "/";
-        }}
-      >
+        onClick={returnToHome}> 
         Return to Home
       </button>
     </div>

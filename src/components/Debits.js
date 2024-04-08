@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom'; //useHistory allows for dynamic navigation of buttons without refreshing page
+
+
 
 const Debits = (props) => {
   const { debits, addDebit } = props;
+  const history = useHistory(); //initialize history
 
   const handleAddDebit = (event) => {
     event.preventDefault();
@@ -35,6 +39,11 @@ const Debits = (props) => {
         </li>
       );
     });
+  };
+
+  //when buttons is pressed, then returns to home
+  const returnToHome = () => {
+    history.push('/');
   };
 
   const debitAmount = debits.reduce((total, debit) => total + debit.amount, 0); // calculate debit amount in total
@@ -70,10 +79,7 @@ const Debits = (props) => {
       <br />
       <button
         className="debit-return"
-        onClick={() => {
-          window.location.href = "/";
-        }}
-      >
+        onClick={returnToHome}> 
         Return to Home
       </button>
     </div>
