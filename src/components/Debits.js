@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Debits = (props) => {
   const { debits, addDebit } = props;
@@ -14,7 +14,7 @@ const Debits = (props) => {
         id: Math.floor(Math.random() * 1000), // Generate a unique ID (for demonstration purposes)
         description: description,
         amount: amount,
-        date: new Date().toISOString() // Store current date in ISO format
+        date: new Date().toISOString(), // Store current date in ISO format
       };
 
       // Call the addDebit function from props to update state with the new debit
@@ -28,7 +28,7 @@ const Debits = (props) => {
   const renderDebits = () => {
     return debits.map((debit) => {
       // Format the date with time in ISO format
-      const formattedDateTime = new Date(debit.date).toISOString(); 
+      const formattedDateTime = new Date(debit.date).toISOString();
       return (
         <li key={debit.id}>
           {debit.amount} {debit.description} {formattedDateTime}
@@ -41,20 +41,41 @@ const Debits = (props) => {
 
   return (
     <div>
-      <h1>Debits</h1>
+      <div className="debit-header">
+        <h1>Debits</h1>
+      </div>
 
       <p>**Total Debit Amount: {debitAmount.toFixed(2)}**</p>
 
       <ul>{renderDebits()}</ul>
 
       <form onSubmit={handleAddDebit}>
-        <input type="text" name="description" placeholder="Description" />
-        <input type="number" name="amount" placeholder="Amount" />
-        <button type="submit">Add Debit</button>
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          className="debit-description-bar"
+        />
+        <input
+          type="number"
+          name="amount"
+          placeholder="Amount"
+          className="debit-amount-bar"
+        />
+        <button type="submit" className="add-debit">
+          Add Debit
+        </button>
       </form>
 
       <br />
-      <Link to="/">Return to Home</Link>
+      <button
+        className="debit-return"
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
+        Return to Home
+      </button>
     </div>
   );
 };

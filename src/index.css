@@ -23,19 +23,18 @@ input, button {
   cursor: pointer; 
 }
 
+/*CSS for the homepage*/
 .custom-link {
   color: #007bff; /* Change the color as desired */
   text-decoration: none; /* Remove underline */
-  font-weight: bold; /* Make the text bold */
-  font-size: 20px; /* Change the font size as desired */
-  margin: 0 30px;
+  font-weight: bold;
+  font-size: 20px; 
+  margin: 0 30px; /*space them out between*/
 }
-
 .custom-link:hover {
   color: #0056b3; /* Change the color on hover */
   font-size: 27px;
 }
-
 .link-group {
   display: flex; /* Use flexbox layout */
   justify-content: center; /* Space out items evenly */
@@ -58,7 +57,91 @@ input, button {
   margin-bottom: 20px;
 }
 
+
 .balance {
-  font-weight: bold; /* Make the text bold */
+  font-weight: bold;
   font-size: 20px;
 }
+
+
+/* Css for the Debits Page */
+/*for the return to home button in debit page*/
+.debit-return {
+  background-color: rgb(144, 127, 86); /* Green */
+  border: rgb(0, 0, 0);
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  box-shadow: 0 3px rgb(84, 74, 50);
+  bottom: 10px;
+}
+.debit-return:hover {
+  background-color: rgb(84, 74, 50);
+}
+.debit-return:active {
+  background-color: rgb(84, 74, 50);
+  box-shadow: 0 0px;
+  transform: translateY(4px);
+}
+
+/*for the debit page header*/
+.debit-header{
+  padding: 10px;
+  text-align: center;
+  background: rgb(84, 74, 50);
+  color: rgb(255, 255, 255);
+  font-size: 30px;
+  margin: 0;
+  margin-bottom: 30px;
+}
+
+/*for displaying the credit and debit totals*/
+p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+/*changing size for the debit amount bar*/
+.debit-amount-bar {
+  width: 15%;
+  padding: 8px 15px;
+  margin: 0 8px;
+  box-sizing: border-box;
+}
+
+/*changing size for debit description bar*/
+.debit-description-bar {
+  width: 15%;
+  padding: 8px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+/*changing button style for add debit*/
+.add-debit {
+  background-color: rgb(144, 127, 86); /* Green */
+  border: rgb(0, 0, 0);
+  color: white;
+  padding: 5px 10px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13px;
+  box-shadow: 0 3px #2f2c1e;
+}
+.add-debit:hover {
+  background-color: rgb(104, 94, 70);
+}
+.add-debit:active {
+  background-color: rgb(84, 74, 50);
+  box-shadow: 0 0px;
+  transform: translateY(4px);
+}
+
+/*removing the bullet points*/
+ul {
+  list-style-type: none;
+}
+
