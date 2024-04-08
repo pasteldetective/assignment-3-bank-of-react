@@ -1,15 +1,8 @@
-/*==================================================
-src/components/Credits.js
-
-The Credits component contains information for Credits page view.
-Note: You need to work on this file for the Assignment.
-==================================================*/
-import { Link } from "react-router-dom"; //unused
-import { useHistory } from 'react-router-dom'; //useHistory allows for dynamic navigation of buttons without refreshing page
+import { useHistory } from 'react-router-dom';
 
 const Credits = (props) => {
   const { credits, addCredit } = props;
-  const history = useHistory(); //initialize history
+  const history = useHistory();
 
   const handleAddCredit = (event) => {
     event.preventDefault();
@@ -18,76 +11,79 @@ const Credits = (props) => {
 
     if (description && !isNaN(amount)) {
       const newCredit = {
-        id: Math.floor(Math.random() * 1000), // Generate a unique ID (for demonstration purposes)
+        id: Math.floor(Math.random() * 1000),
         description: description,
         amount: amount,
-        date: new Date().toISOString(), // Store current date in ISO format
+        date: new Date().toISOString(),
       };
 
-      // Call the addCredit function from props to update state with the new credit
       addCredit(newCredit);
 
-      // Reset form fields after adding the credit
       event.target.reset();
     }
   };
 
   const renderCredits = () => {
     return credits.map((credit) => {
-      // Format the date with time in ISO format
       const formattedDateTime = new Date(credit.date).toISOString();
       return (
-        <li key={credit.id}>
-          {credit.amount} {credit.description} {formattedDateTime}
-        </li>
+        <div className="credit-item" key={credit.id}>
+          <div className="credit-info">
+            <div>
+              <span className="credit-amount">{credit.amount}</span>
+            </div>
+            <div>
+              <span className="credit-description">{credit.description}</span>
+            </div>
+            <div className="credit-time">{formattedDateTime}</div>
+          </div>
+        </div>
       );
     });
   };
 
-  const creditAmount = credits.reduce(
-    (total, credit) => total + credit.amount,
-    0
-  ); // calculate credit amount in total
+  const creditAmount = credits.reduce((total, credit) => total + credit.amount, 0);
 
-  //when buttons is pressed, then returns to home
   const returnToHome = () => {
     history.push('/');
   };
 
   return (
-    <div>
+    <div className="credit-container">
       <div className="credit-header">
         <h1>Credits</h1>
+        <p>Total Credit Amount: {creditAmount.toFixed(2)}</p>
       </div>
-
-      <p>**Total Credit Amount: {creditAmount.toFixed(2)}**</p>
-
-      <ul>{renderCredits()}</ul>
-
-      <form onSubmit={handleAddCredit}>
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          className="credit-description-bar"
-        />
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          className="debit-description-bar"
-        />
-        <button type="submit" className="add-credit">
-          Add Credit
+      <div className="credit-content">
+        <div className="credit-form">
+          <h2>Add Credit</h2>
+          <form onSubmit={handleAddCredit}>
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className="credit-description-bar"
+            />
+            <input
+              type="number"
+              name="amount"
+              placeholder="Amount"
+              className="credit-amount-bar"
+            />
+            <button type="submit" className="add-credit">
+              Add Credit
+            </button>
+          </form>
+        </div>
+        <div className="credit-list">
+          <ul>{renderCredits()}</ul>
+        </div>
+      </div>
+      <div className="return-home">
+        <button className="credit-return" onClick={returnToHome}>
+          Return to Home
         </button>
-      </form>
-
-      <br />
-      <button
-        className="credit-return"
-        onClick={returnToHome}> 
-        Return to Home
-      </button>
+      </div>
     </div>
   );
 };
