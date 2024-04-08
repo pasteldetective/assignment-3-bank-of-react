@@ -49,22 +49,41 @@ const Credits = (props) => {
 
   return (
     <div>
-      <h1>Credits</h1>
+      <div className="credit-header">
+        <h1>Credits</h1>
+      </div>
 
       <p>**Total Credit Amount: {creditAmount.toFixed(2)}**</p>
 
       <ul>{renderCredits()}</ul>
 
       <form onSubmit={handleAddCredit}>
-        <input type="text" name="description" placeholder="Description" />
-        <input type="number" name="amount" placeholder="Amount" />
-        <button type="submit">Add Credit</button>
+        <input
+          type="text"
+          name="description"
+          placeholder="Description"
+          className="credit-description-bar"
+        />
+        <input
+          type="number"
+          name="amount"
+          placeholder="Amount"
+          className="debit-description-bar"
+        />
+        <button type="submit" className="add-credit">
+          Add Credit
+        </button>
       </form>
 
       <br />
-      <Link to="/" className="credit-return">
+      <button
+        className="credit-return"
+        onClick={() => {
+          window.location.href = "/";
+        }}
+      >
         Return to Home
-      </Link>
+      </button>
     </div>
   );
 };
