@@ -4,7 +4,7 @@ src/components/Credits.js
 The Credits component contains information for Credits page view.
 Note: You need to work on this file for the Assignment.
 ==================================================*/
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Credits = (props) => {
   const { credits, addCredit } = props;
@@ -19,7 +19,7 @@ const Credits = (props) => {
         id: Math.floor(Math.random() * 1000), // Generate a unique ID (for demonstration purposes)
         description: description,
         amount: amount,
-        date: new Date().toISOString() // Store current date in ISO format
+        date: new Date().toISOString(), // Store current date in ISO format
       };
 
       // Call the addCredit function from props to update state with the new credit
@@ -33,7 +33,7 @@ const Credits = (props) => {
   const renderCredits = () => {
     return credits.map((credit) => {
       // Format the date with time in ISO format
-      const formattedDateTime = new Date(credit.date).toISOString(); 
+      const formattedDateTime = new Date(credit.date).toISOString();
       return (
         <li key={credit.id}>
           {credit.amount} {credit.description} {formattedDateTime}
@@ -42,7 +42,10 @@ const Credits = (props) => {
     });
   };
 
-  const creditAmount = credits.reduce((total, credit) => total + credit.amount, 0); // calculate credit amount in total
+  const creditAmount = credits.reduce(
+    (total, credit) => total + credit.amount,
+    0
+  ); // calculate credit amount in total
 
   return (
     <div>
@@ -59,7 +62,9 @@ const Credits = (props) => {
       </form>
 
       <br />
-      <Link to="/">Return to Home</Link>
+      <Link to="/" className="credit-return">
+        Return to Home
+      </Link>
     </div>
   );
 };
