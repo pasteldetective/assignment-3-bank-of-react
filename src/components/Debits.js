@@ -1,12 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from 'react-router-dom'; //useHistory allows for dynamic navigation of buttons without refreshing page
-
-
+import { useHistory } from 'react-router-dom';
 
 const Debits = (props) => {
   const { debits, addDebit } = props;
-  const history = useHistory(); //initialize history
+  const history = useHistory();
 
   const handleAddDebit = (event) => {
     event.preventDefault();
@@ -15,73 +12,79 @@ const Debits = (props) => {
 
     if (description && !isNaN(amount)) {
       const newDebit = {
-        id: Math.floor(Math.random() * 1000), // Generate a unique ID (for demonstration purposes)
+        id: Math.floor(Math.random() * 1000),
         description: description,
         amount: amount,
-        date: new Date().toISOString(), // Store current date in ISO format
+        date: new Date().toISOString(),
       };
 
-      // Call the addDebit function from props to update state with the new debit
       addDebit(newDebit);
 
-      // Reset form fields after adding the debit
       event.target.reset();
     }
   };
 
   const renderDebits = () => {
     return debits.map((debit) => {
-      // Format the date with time in ISO format
       const formattedDateTime = new Date(debit.date).toISOString();
       return (
-        <li key={debit.id}>
-          {debit.amount} {debit.description} {formattedDateTime}
-        </li>
+        <div className="credit-item" key={debit.id}>
+          <div className="credit-info">
+            <div>
+              <span className="credit-amount">{debit.amount}</span>
+            </div>
+            <div>
+              <span className="credit-description">{debit.description}</span>
+            </div>
+            <div className="credit-time">{formattedDateTime}</div>
+          </div>
+        </div>
       );
     });
   };
 
-  //when buttons is pressed, then returns to home
+  const debitAmount = debits.reduce((total, debit) => total + debit.amount, 0);
+
   const returnToHome = () => {
     history.push('/');
   };
 
-  const debitAmount = debits.reduce((total, debit) => total + debit.amount, 0); // calculate debit amount in total
-
   return (
-    <div>
-      <div className="debit-header">
+    <div className="credit-container">
+      <div className="credit-header">
         <h1>Debits</h1>
+        <p>Total Debit Amount: {debitAmount.toFixed(2)}</p>
       </div>
-
-      <p>**Total Debit Amount: {debitAmount.toFixed(2)}**</p>
-
-      <ul>{renderDebits()}</ul>
-
-      <form onSubmit={handleAddDebit}>
-        <input
-          type="text"
-          name="description"
-          placeholder="Description"
-          className="debit-description-bar"
-        />
-        <input
-          type="number"
-          name="amount"
-          placeholder="Amount"
-          className="debit-amount-bar"
-        />
-        <button type="submit" className="add-debit">
-          Add Debit
+      <div className="credit-content">
+        <div className="credit-form">
+          <h2>Add Debit</h2>
+          <form onSubmit={handleAddDebit}>
+            <input
+              type="text"
+              name="description"
+              placeholder="Description"
+              className="credit-description-bar"
+            />
+            <input
+              type="number"
+              name="amount"
+              placeholder="Amount"
+              className="credit-amount-bar"
+            />
+            <button type="submit" className="add-credit">
+              Add Debit
+            </button>
+          </form>
+        </div>
+        <div className="credit-list">
+          <ul>{renderDebits()}</ul>
+        </div>
+      </div>
+      <div className="return-home">
+        <button className="credit-return" onClick={returnToHome}>
+          Return to Home
         </button>
-      </form>
-
-      <br />
-      <button
-        className="debit-return"
-        onClick={returnToHome}> 
-        Return to Home
-      </button>
+      </div>
     </div>
   );
 };

@@ -215,3 +215,74 @@ ul {
   box-shadow: 0 0px;
   transform: translateY(4px);
 }
+
+.credit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.credit-header {
+  width: 60%;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.credit-content {
+  width: 80%;
+  display: flex;
+}
+
+.credit-form {
+  width: 30%;
+  margin-right: 20px;
+}
+
+.credit-form input,
+.credit-form button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.credit-list {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.credit-item {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.credit-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.credit-amount {
+  font-weight: bold;
+}
+
+.credit-description {
+  text-align: center;
+}
+
+.credit-time {
+  font-size: 12px;
+}
+
+.return-home {
+  margin-top: 20px;
+}
+
+.credit-total {
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
