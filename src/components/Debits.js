@@ -26,7 +26,7 @@ const Debits = (props) => {
 
   const renderDebits = () => {
     return debits.map((debit) => {
-      const formattedDateTime = new Date(debit.date).toISOString();
+      const formattedDateTime = new Date(debit.date).toISOString().slice(0, 10);
       return (
         <div className="credit-item" key={debit.id}>
           <div className="credit-info">
