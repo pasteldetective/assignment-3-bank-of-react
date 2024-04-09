@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 
 const Credits = (props) => {
-  const { credits, addCredit } = props;
+  const { credits, addCredit, accountBalance } = props; // Receive the accountBalance prop
   const history = useHistory();
 
   const handleAddCredit = (event) => {
@@ -53,6 +53,7 @@ const Credits = (props) => {
       <div className="credit-header">
         <h1>Credits</h1>
         <p>Total Credit Amount: {creditAmount.toFixed(2)}</p>
+        <p>Account Balance: {accountBalance.toFixed(2)}</p> {/* Display account balance */}
       </div>
       <div className="credit-content">
         <div className="credit-form">
