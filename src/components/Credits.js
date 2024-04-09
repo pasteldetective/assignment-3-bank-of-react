@@ -25,7 +25,7 @@ const Credits = (props) => {
 
   const renderCredits = () => {
     return credits.map((credit) => {
-      const formattedDateTime = new Date(credit.date).toISOString();
+      const formattedDateTime = new Date(credit.date).toISOString().slice(0, 10);
       return (
         <div className="credit-item" key={credit.id}>
           <div className="credit-info">
